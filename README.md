@@ -99,7 +99,10 @@
     <!-- VIDEO SCREEN -->
     <div class="panel">
         <h3>Live Screen</h3>
-        <iframe src="about:blank"></iframe>
+        <!-- Replace LIVE_STREAM_ID with your YouTube livestream ID -->
+        <iframe src="https://www.youtube.com/embed/LIVE_STREAM_ID?autoplay=1" 
+                allow="autoplay; encrypted-media" allowfullscreen>
+        </iframe>
     </div>
 
     <!-- CONTROL PANEL -->
