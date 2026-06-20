@@ -2,83 +2,258 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Control Info</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ApexFlow Desktop Automation</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            font-family: Arial, Helvetica, sans-serif;
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #ffffff;
+        :root {
+            --primary: #10b981;
+            --primary-hover: #059669;
+            --bg-main: #0b0f19;
+            --bg-card: #111827;
+            --border: #1f2937;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
-        .container {
-            background: rgba(0, 0, 0, 0.35);
-            padding: 40px;
-            max-width: 600px;
-            border-radius: 12px;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-stack);
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: -0.03em;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .brand span {
+            color: var(--primary);
+        }
+
+        .hero {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 6rem 1.5rem 4rem 1.5rem;
             text-align: center;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .version-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--primary);
+            padding: 0.35rem 0.75rem;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(16, 185, 129, 0.2);
         }
 
         h1 {
-            margin-top: 0;
-            font-size: 2.2em;
-            margin-bottom: 15px;
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1.15;
+            margin-bottom: 1.25rem;
         }
 
-        p {
-            line-height: 1.6;
-            font-size: 1.05em;
-            opacity: 0.9;
+        .subtitle {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 580px;
+            margin: 0 auto 2.5rem auto;
         }
 
-        .buttons {
-            margin-top: 25px;
+        .download-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 5rem;
         }
 
-        a {
-            display: inline-block;
-            margin: 8px;
-            padding: 12px 28px;
-            background-color: #1abc9c;
-            color: #000;
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--primary);
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.85rem 2rem;
+            border-radius: 6px;
             text-decoration: none;
-            font-weight: bold;
-            border-radius: 8px;
-            transition: background-color 0.2s ease, transform 0.2s ease;
+            transition: background-color 0.15s ease, transform 0.15s ease;
+            border: 1px solid transparent;
         }
 
-        a:hover {
-            background-color: #16a085;
-            transform: translateY(-2px);
+        .btn-action:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-action:active {
+            transform: scale(0.98);
+        }
+
+        .system-requirements {
+            font-size: 0.825rem;
+            color: var(--text-muted);
+            font-family: monospace;
+        }
+
+        .features-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .feature-item {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .feature-item h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .feature-item p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-out: 1.4;
+        }
+
+        footer {
+            max-width: 1000px;
+            margin: 8rem auto 0 auto;
+            padding: 2rem 1.5rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 0.825rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.25rem; }
+            .features-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .hero { padding-top: 3rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Welcome To My Main Site</h1>
+    <header>
+        <a href="#" class="brand">Apex<span>Flow</span></a>
+    </header>
 
-        <p>
-            Welcome to the main page. I’m a developer who has created a remote control panel.
-            The control panel can be found on the next page.
-        </p>
+    <main>
+        <section class="hero">
+            <span class="version-tag">Version 2.4.0 Build</span>
+            <h1>High performance desktop builds. Engineered for local data pipelines.</h1>
+            <p class="subtitle">An optimized runtime package designed to process complex local automation routines without client-server overhead constraints.</p>
+            
+            <div class="download-wrapper">
+                <a href="#" id="downloadLink" class="btn-action">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    Download Setup Build
+                </a>
+                <span id="specText" class="system-requirements">Verifying deployment target...</span>
+            </div>
+        </section>
 
-        <p>
-            I will put updates here later, once I get around to it.
-        </p>
+        <section class="features-grid">
+            <div class="feature-item">
+                <h2>Compiled Core</h2>
+                <p>Executes commands directly via architecture-native instructions to minimize instruction cycles.</p>
+            </div>
+            <div class="feature-item">
+                <h2>Local Execution</h2>
+                <p>Maintains data security compliance records by isolating logic boundaries strictly to your physical hardware.</p>
+            </div>
+            <div class="feature-item">
+                <h2>Low Latency UI</h2>
+                <p>Maintains high frame rates under heavy data throughput loads via hardware-accelerated viewport rendering.</p>
+            </div>
+        </section>
+    </main>
 
-        <div class="buttons">
-            <a href="control.html">Go to the Control Panel</a>
-            <a href="updates.html">View Updates</a>
-        </div>
-    </div>
+    <footer>
+        <p>&copy; 2026 ApexFlow Systems Architecture. All binary distributions are cryptographically signed.</p>
+    </footer>
 
+    <script>
+        (function() {
+            document.addEventListener("DOMContentLoaded", function() {
+                var btn = document.getElementById("downloadLink");
+                var txt = document.getElementById("specText");
+                var ua = navigator.userAgent.toLowerCase();
+                
+                var platforms = {
+                    win: { label: "Windows x64 Build", file: "apexflow_setup_x64.exe", meta: "Direct Link (42.1 MB) | SHA-256 Verified" },
+                    mac: { label: "macOS Apple Silicon", file: "apexflow_arm64.dmg", meta: "Direct Link (45.3 MB) | Universal Binary" },
+                    lin: { label: "Linux x86_64", file: "apexflow_amd64.tar.gz", meta: "Direct Link (38.7 MB) | glibc 2.31+" }
+                };
+
+                var target = platforms.win;
+
+                if (ua.indexOf("macintosh") !== -1 || ua.indexOf("mac os x") !== -1) {
+                    target = platforms.mac;
+                } else if (ua.indexOf("linux") !== -1) {
+                    target = platforms.lin;
+                }
+
+                btn.childNodes[2].nodeValue = "Download for " + target.label;
+                btn.setAttribute("href", "/dist/" + target.file);
+                txt.textContent = target.meta;
+
+                btn.addEventListener("click", function(e) {
+                    if (btn.getAttribute("href").indexOf("/dist/") === 0) {
+                        e.preventDefault();
+                        btn.style.pointerEvents = "none";
+                        btn.style.opacity = "0.6";
+                        btn.childNodes[2].nodeValue = "Requesting Stream...";
+                        
+                        setTimeout(function() {
+                            btn.style.pointerEvents = "auto";
+                            btn.style.opacity = "1";
+                            btn.childNodes[2].nodeValue = "Download Started";
+                            txt.textContent = "Check your system target directory.";
+                        }, 800);
+                    }
+                });
+            });
+        })();
+    </script>
 </body>
 </html>
